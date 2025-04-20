@@ -20,7 +20,7 @@ git clone <url_distante>
 python -m venv <nom_environnment>
 ```
 
-Activation de l'environnment : 
+Activation de l'environnement : 
 
 ```bash
 env\Scripts\activate
@@ -34,7 +34,7 @@ pip install -r requirements.txt
 
 # Update 
 
-Si vous ajoutez des dépendances ajoutez les aux `requirements.txt` pour faciliter le prochain à travailler :)
+Si vous ajoutez des dépendances ajoutez les aux `requirements.txt` pour faciliter le travail du prochain :)
 
 ```bash
 pip freeze > requirements.txt
