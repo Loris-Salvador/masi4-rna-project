@@ -1,11 +1,15 @@
 from simple_perceptron.classification_simple import ClassificationSimplePerceptron
 from simple_perceptron.linear_regression_simple import LinearRegressionSimplePerceptron
-from data_path import TABLE_AND, TABLE_2_9, TABLE_2_10, TABLE_2_11
+from perceptron_mono_couche.Perceptron3Classes import Perceptron3Classes
+from perceptron_mono_couche.Perceptron4Classes import Perceptron4Classes
+
+from data_path import TABLE_AND, TABLE_2_9, TABLE_2_10, TABLE_2_11, TABLE_3_1, TABLE_3_5
+
 
 
 def main():
     print("Choisissez le type de modèle :")
-    model_type = input("Entrez '1' pour classification ou '2' pour régression : ").strip().lower()
+    model_type = input("Entrez '1' pour classification, '2' pour régression ou '3' pour le monocouche : ").strip().lower()
 
     if model_type == '1':
         print("Choisissez la table pour la classification :")
@@ -28,6 +32,17 @@ def main():
         print("Vous avez choisi la régression avec la table 2_11.")
         data_path = TABLE_2_11
         model = LinearRegressionSimplePerceptron(data_path=data_path)
+    elif model_type == '3':
+        print("Choisissez le nombre de classe pour le perceptron monocouche")
+        print("1. 3 classes")
+        print("2. 4 classes")
+        table_choice = input("Entrez le numéro de la table (1 ou 2) : ").strip()
+        if table_choice == "1":
+            data_path = TABLE_3_1
+            model = Perceptron3Classes(data_path=data_path)
+        if table_choice == "2":
+            data_path = TABLE_3_5
+            model = Perceptron4Classes(data_path=data_path)
     else:
         print("Choix invalide. Quittez le programme.")
         return
@@ -39,6 +54,8 @@ def main():
 
     if model_type == '1':
         model.plot_decision_boundary()
+    elif model_type == '3' and table_choice == '2':
+        model.evaluate()
     else:
         model.plot()
 
