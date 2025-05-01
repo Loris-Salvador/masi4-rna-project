@@ -73,23 +73,23 @@ Une fois le travail fini sur une branche (pas trop faire par branche) faire une 
 
 ## Perceptron Descente Gradient
 
-- Opérateur logique ET ⏳
-- Classification de données linéairement séparables (table 2.9) ⏳ 
-- Classfication de données non linéairement séparable (table 2.10) ⏳ 
-- Régression linéaire (table 2.11) ⏳
+- Opérateur logique ET ✅ ***Loris***
+- Classification de données linéairement séparables (table 2.9) ✅ ***Loris***
+- Classfication de données non linéairement séparable (table 2.10) ✅ ***Loris***
+- Régression linéaire (table 2.11) ✅ ***Loris***
 
 
 ## Perceptron Adaline
 
-- Opérateur logique ET ⏳
-- Classification de données linéairement séparables (table 2.9) ⏳ 
-- Classfication de données non linéairement séparable (table 2.10) ⏳ 
-- Régression linéaire (table 2.11) ⏳
+- Opérateur logique ET ✅ ***Loris***
+- Classification de données linéairement séparables (table 2.9) ✅ ***Loris***
+- Classfication de données non linéairement séparable (table 2.10) ✅ ***Loris***
+- Régression linéaire (table 2.11) ✅ ***Loris***
 
 ## Perceptron monocouche
 
-- Classification à 3 classes (table 3.1) ⏳ ***François***
-- Classification à 4 classes (table 3.5) ⏳ ***François***
+- Classification à 3 classes (table 3.1) ✅ ***François***
+- Classification à 4 classes (table 3.5) ✅ ***François***
 
 ## Perceptron multicouche
 

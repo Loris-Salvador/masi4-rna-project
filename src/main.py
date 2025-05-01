@@ -1,21 +1,22 @@
 from perceptron_mono_couche.Perceptron3Classes import Perceptron3Classes
 from perceptron_mono_couche.Perceptron4Classes import Perceptron4Classes
-from simple_perceptron.simple_perceptron import SimplePerceptron
-from perceptron_gradient.perceptron_descente_gradient import PerceptronDescenteGradient
-from perceptron_adaline.perceptron_adaline import PerceptronAdaline
+from perceptron.simple_perceptron import SimplePerceptron
+from perceptron.perceptron_descente_gradient import PerceptronDescenteGradient
+from perceptron.perceptron_adaline import PerceptronAdaline
 
 from data_path import TABLE_AND, TABLE_2_9, TABLE_2_10, TABLE_2_11, TABLE_3_1, TABLE_3_5
 
 
 
 def main():
+
+    simple_perceptron()
+
+    descente_gradient()
+
     adaline()
-
-    #descente_gradient()
-
-    #simple_perceptron()
-
-    #monocouche()
+    
+    monocouche()
 
 
 
