@@ -53,6 +53,10 @@ Si pas d'env virtuel rajoutez à la main au fichier `requirements.txt` car sinon
 
 Faites des branches quand vous travaillez pour que ça soit plus facile et propre 
 
+## Pull Requests
+
+Une fois le travail fini sur une branche (pas trop faire par branche) faire une pull request sur Github vers la main et ajouter des reviewers 
+
 
 # Avancement  📋 
 
