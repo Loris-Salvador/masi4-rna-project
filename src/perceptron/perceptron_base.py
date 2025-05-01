@@ -1,38 +1,27 @@
 import numpy as np
-import pandas as pd
 import matplotlib.pyplot as plt
+import pandas as pd
 
 
-
-class PerceptronAdaline:
-    """
-    Perceptron ADALINE (Widrow–Hoff) :
-    apprentissage stochastique sur l'erreur quadratique.
-    """
-    def __init__(self, data_path, graph_name="ADALINE"):
+class PerceptronBase:
+    
+    def __init__(self, data_path, graph_name):
         self.graph_name = graph_name
+
         data = pd.read_csv(data_path, header=None)
-        X = data.iloc[:, :-1].values
-        self.exp_outputs = data.iloc[:,  -1].values
-        # biais
-        self.entries = np.c_[np.ones((X.shape[0], 1)), X]
-        # poids init
+
+        #toutes les lignes et toutes les colonnes sauf derniere
+        self.entries = data.iloc[:, :-1].values
+
+        #toutes les lignes et uniquement la derniere colonne
+        self.exp_outputs = data.iloc[:, -1].values 
+
+        # Ajouter une colonne de 1 pour le biais à self.entries
+        # shape[0] = ligne et shape[1] = colonne
+        self.entries = np.c_[np.ones((self.entries.shape[0], 1)), self.entries]
+
         self.weights = np.random.randn(self.entries.shape[1])
 
-    def train(self, learning_rate, epochs):
-        """
-        À chaque exemple (stochastique) :
-          z = w·x
-          error = d - z    # erreur continue
-          w += lr * error * x
-        """
-        for epoch in range(epochs):
-            for x_i, d_i in zip(self.entries, self.exp_outputs):
-                z     = x_i.dot(self.weights)
-                error = d_i - z
-                self.weights += learning_rate * error * x_i
-
-                
 
     def display_graph_classification(self):
         X = self.entries[:, 1:]
@@ -56,7 +45,7 @@ class PerceptronAdaline:
 
 
     def display_graph_regression(self):
-        X = self.entries[:, 1:]  # On enlève le biais pour tracer
+        X = self.entries[:, 1:]
         y = self.exp_outputs
 
         if X.shape[1] != 1:
