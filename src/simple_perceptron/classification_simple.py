@@ -1,29 +1,13 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+from simple_perceptron.simple_perceptron_base import SimplePerceptronBase
 
 
-
-class ClassificationSimplePerceptron():
+class ClassificationSimplePerceptron(SimplePerceptronBase):
     
     def __init__(self, data_path):
-        data = pd.read_csv(data_path, header=None)
-
-        #toutes les lignes et toutes les colonnes sauf derniere
-        self.entries = data.iloc[:, :-1].values
-
-        #toutes les lignes et uniquement la derniere colonne
-        self.exp_outputs = data.iloc[:, -1].values 
-
-        # Ajouter une colonne de 1 pour le biais à self.entries
-        self.entries = np.c_[np.ones((self.entries.shape[0], 1)), self.entries]
-
-        #shape[0] donne le nb lignes et shape[1] le nb colonnes
-        n_features = self.entries.shape[1]
-
-        self.weights = np.random.randn(n_features)
-
-
+        super().__init__(data_path = data_path)
 
     def __activation(self, z):
         return 1 if z >= 0 else -1
@@ -36,19 +20,13 @@ class ClassificationSimplePerceptron():
                 x_i = self.entries[i]
                 y_true = self.exp_outputs[i]
 
-                # Produit scalaire + biais
                 z = np.dot(x_i, self.weights)
                 y_pred = self.__activation(z)
 
-                # Erreur
                 error = y_true - y_pred
 
-                # Mise à jour des poids et du biais
                 self.weights += learning_rate * error * x_i
 
-        for i in range(len(self.entries)):
-            z = np.dot(self.entries[i], self.weights)
-            y_pred = self.__activation(z)
 
     def plot_decision_boundary(self):
         # Points de données (sans la colonne de biais)
