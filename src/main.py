@@ -3,7 +3,6 @@ from simple_perceptron.linear_regression_simple import LinearRegressionSimplePer
 from data_path import TABLE_AND, TABLE_2_9, TABLE_2_10, TABLE_2_11
 
 
-
 def main():
     print("Choisissez le type de modèle :")
     model_type = input("Entrez '1' pour classification ou '2' pour régression : ").strip().lower()
