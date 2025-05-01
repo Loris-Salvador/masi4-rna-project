@@ -38,7 +38,7 @@ Cette commande va lire les dépendances de `requirement.txt` et les installer
 pip install -r requirements.txt
 ```
 
-# Contribution 
+# Contributions
 
 ## Dépendances
 
