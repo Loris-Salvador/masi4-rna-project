@@ -52,3 +52,44 @@ Si pas d'env virtuel rajoutez à la main au fichier `requirements.txt` car sinon
 ## Branches
 
 Faites des branches quand vous travaillez pour que ça soit plus facile et propre 
+
+
+# Avancement  📋 
+
+## Perceptron Simple
+
+- Opérateur logique ET ✅ ***Loris***
+- Classification de données linéairement séparables (table 2.9) ✅ ***Loris***
+- Classfication de données non linéairement séparable (table 2.10) ✅ ***Loris***
+- Régression linéaire (table 2.11) ✅ ***Loris***
+
+## Perceptron Descente Gradient
+
+- Opérateur logique ET ⏳
+- Classification de données linéairement séparables (table 2.9) ⏳ 
+- Classfication de données non linéairement séparable (table 2.10) ⏳ 
+- Régression linéaire (table 2.11) ⏳
+
+
+## Perceptron Adaline
+
+- Opérateur logique ET ⏳
+- Classification de données linéairement séparables (table 2.9) ⏳ 
+- Classfication de données non linéairement séparable (table 2.10) ⏳ 
+- Régression linéaire (table 2.11) ⏳
+
+## Perceptron monocouche
+
+- Classification à 3 classes (table 3.1) ⏳
+- Classification à 4 classes (table 3.5) ⏳
+
+## Perceptron multicouche
+
+- Opérateur logique XOR (table 4.3) ⏳
+- Classification à 2 classes non linéairement séparable (table 4.12) ⏳
+- Classification à 3 classes non linéairement séparable (table 4.14) ⏳
+- Régression non linéaire (table 4.17) ⏳
+
+## DataSet réel
+
+- langue des signes ⏳
