@@ -2,18 +2,22 @@ from perceptron_mono_couche.Perceptron3Classes import Perceptron3Classes
 from perceptron_mono_couche.Perceptron4Classes import Perceptron4Classes
 from simple_perceptron.simple_perceptron import SimplePerceptron
 from perceptron_gradient.perceptron_descente_gradient import PerceptronDescenteGradient
+from perceptron_adaline.perceptron_adaline import PerceptronAdaline
 
 from data_path import TABLE_AND, TABLE_2_9, TABLE_2_10, TABLE_2_11, TABLE_3_1, TABLE_3_5
 
 
 
 def main():
+    adaline()
 
-    descente_gradient()
+    #descente_gradient()
 
     #simple_perceptron()
 
     #monocouche()
+
+
 
 
 def simple_perceptron():
@@ -66,6 +70,33 @@ def descente_gradient():
     model_2_11.train(learning_rate=1e-5, epochs=2000)
 
     model_2_11.display_graph_regression()
+
+
+def adaline():
+    model_and = PerceptronAdaline(data_path=TABLE_AND, graph_name="Perceptron ADALINE Classification AND")
+
+    model_and.train(learning_rate=0.1, epochs=500)
+
+    model_and.display_graph_classification()
+
+    model_2_9 = PerceptronAdaline(data_path=TABLE_2_9, graph_name="Perceptron ADALINE Classification linéairment séparable")
+
+    model_2_9.train(0.001, 500)
+
+    model_2_9.display_graph_classification()
+
+    model_2_10 = PerceptronAdaline(data_path=TABLE_2_10, graph_name="Perceptron ADALINE Classification non linéairment séparable")
+
+    model_2_10.train(0.001, 500)
+
+    model_2_10.display_graph_classification()
+
+    model_2_11 = PerceptronAdaline(data_path=TABLE_2_11, graph_name="Perceptron ADALINE Regression")
+
+    model_2_11.train(learning_rate=1e-5, epochs=2000)
+
+    model_2_11.display_graph_regression()
+
 
 
 def monocouche():
