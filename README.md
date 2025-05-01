@@ -92,4 +92,4 @@ Faites des branches quand vous travaillez pour que ça soit plus facile et propr
 
 ## DataSet réel
 
-- langue des signes ⏳
+- Langue des signes ⏳
