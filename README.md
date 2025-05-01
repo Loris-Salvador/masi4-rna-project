@@ -13,13 +13,15 @@ https://www.python.org/downloads/release/python-3810/
 ## Cloner le projet 
 
 ```bash
-git clone <url_distante>
+git clone https://github.com/Loris-Salvador/masi4-rna-project.git
 ```
 
 ## Création d'un environnement virtuel (optionnel)
 
+Dans le dossier du projet à la racine :
+
 ```bash
-python -m venv <nom_environnement>
+python -m venv env
 ```
 
 Activation de l'environnement : 
@@ -29,6 +31,8 @@ env\Scripts\activate
 ```
 
 ## Installer les dépendances
+
+Cette commande va lire les dépendances de `requirement.txt` et les installer
 
 ```bash
 pip install -r requirements.txt
