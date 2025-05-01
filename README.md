@@ -88,8 +88,8 @@ Une fois le travail fini sur une branche (pas trop faire par branche) faire une 
 
 ## Perceptron monocouche
 
-- Classification à 3 classes (table 3.1) ⏳
-- Classification à 4 classes (table 3.5) ⏳
+- Classification à 3 classes (table 3.1) ⏳ ***François***
+- Classification à 4 classes (table 3.5) ⏳ ***François***
 
 ## Perceptron multicouche
 
