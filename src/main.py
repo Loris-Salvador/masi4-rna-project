@@ -10,13 +10,15 @@ from data_path import TABLE_AND, TABLE_2_9, TABLE_2_10, TABLE_2_11, TABLE_3_1, T
 
 def main():
 
-    simple_perceptron()
+    #simple_perceptron()
 
-    descente_gradient()
+    #descente_gradient()
 
-    adaline()
+    #adaline()
     
-    monocouche()
+    #monocouche()
+
+    multicouche()
 
 
 
@@ -123,6 +125,8 @@ def monocouche():
     else:
         model.plot()
 
+def multicouche():
+    print("test")
 
 
 if __name__ == "__main__":
