@@ -93,10 +93,10 @@ Une fois le travail fini sur une branche (pas trop faire par branche) faire une 
 
 ## Perceptron multicouche
 
-- Opérateur logique XOR (table 4.3) ⏳
-- Classification à 2 classes non linéairement séparable (table 4.12) ⏳
-- Classification à 3 classes non linéairement séparable (table 4.14) ⏳
-- Régression non linéaire (table 4.17) ⏳
+- Opérateur logique XOR (table 4.3) ✅ ***François***
+- Classification à 2 classes non linéairement séparable (table 4.12) ✅ ***François***
+- Classification à 3 classes non linéairement séparable (table 4.14) ✅ ***François***
+- Régression non linéaire (table 4.17) ✅ ***François***
 
 ## DataSet réel
 

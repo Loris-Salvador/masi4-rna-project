@@ -3,9 +3,10 @@ from perceptron_mono_couche.Perceptron4Classes import Perceptron4Classes
 from perceptron.simple_perceptron import SimplePerceptron
 from perceptron.perceptron_descente_gradient import PerceptronDescenteGradient
 from perceptron.perceptron_adaline import PerceptronAdaline
+from perceptron_multi_couche.MLPModulaire import MLPModulaire
 
-from data_path import TABLE_AND, TABLE_2_9, TABLE_2_10, TABLE_2_11, TABLE_3_1, TABLE_3_5
-
+from data_path import TABLE_AND, TABLE_2_9, TABLE_2_10, TABLE_2_11, TABLE_3_1, TABLE_3_5, TABLE_XOR, TABLE_4_12, \
+    TABLE_4_14, TABLE_4_17
 
 
 def main():
@@ -126,7 +127,58 @@ def monocouche():
         model.plot()
 
 def multicouche():
-    print("test")
+    table_choice = input("Entrez le numéro de la table (1, 2, 3 ou 4) : ").strip()
+    if table_choice == "1":
+        model = MLPModulaire(
+            data_path=TABLE_XOR,
+            input_size=2,
+            hidden_size=2,
+            output_size=1,
+            task="classification",
+            output_activation="sigmoid"
+        )
+
+        model.train(learning_rate=0.1, epochs=15000)
+        model.plot()
+
+    if table_choice == "2":
+        model = MLPModulaire(
+            data_path=TABLE_4_12,
+            input_size=2,
+            hidden_size=4,  # Tu peux augmenter la complexité pour mieux apprendre
+            output_size=1,
+            task="classification",
+            output_activation="sigmoid"
+        )
+
+        model.train(learning_rate=0.1, epochs=10000)
+        model.plot()
+
+    if table_choice == "3":
+        model = MLPModulaire(
+            data_path=TABLE_4_14,
+            input_size=2,
+            hidden_size=6,  # Plus de neurones cachés pour mieux séparer 3 classes
+            output_size=3,
+            task="classification",
+            output_activation="softmax"
+        )
+
+        model.train(learning_rate=0.1, epochs=15000)
+        model.plot()
+
+    if table_choice == "4":
+        model = MLPModulaire(
+            data_path=TABLE_4_17,
+            input_size=1,
+            hidden_size=5,  # Suffisant pour capter non-linéarité
+            output_size=1,
+            task="regression",
+            output_activation="linear"
+        )
+
+        model.train(learning_rate=0.01, epochs=20000)
+        model.plot()
 
 
 if __name__ == "__main__":
