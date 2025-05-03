@@ -191,11 +191,11 @@ def sign_language():
     data.summary()
 
 
-    model = NeuralNetworkScratch(input_size=42, hidden_size=64, output_size=5, lr=0.01)
+    model = NeuralNetworkScratch(input_size=42, hidden_size=128, output_size=5, lr=0.05)
 
 
     print("Début de l'entraînement...")
-    model.train(data.X_train, data.y_train, epochs=200)
+    model.train(data.X_train, data.y_train, epochs=500)
 
 
     acc = model.accuracy(data.X_val, data.y_val)

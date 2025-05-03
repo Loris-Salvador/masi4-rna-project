@@ -14,7 +14,7 @@ class LangageSignesData:
     def load_data(self):
         """Charge les données avec vérifications rigoureuses"""
         try:
-           
+
             if not os.path.exists(self.data_path):
                 raise FileNotFoundError(f"Fichier introuvable: {self.data_path}")
 
