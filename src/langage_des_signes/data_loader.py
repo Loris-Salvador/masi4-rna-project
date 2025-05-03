@@ -14,24 +14,31 @@ class LangageSignesData:
     def load_data(self):
         """Charge les données avec vérifications rigoureuses"""
         try:
-            # Lecture avec vérification de format
+           
             if not os.path.exists(self.data_path):
                 raise FileNotFoundError(f"Fichier introuvable: {self.data_path}")
 
             data = pd.read_csv(self.data_path, header=None)
 
-            # Vérification du shape
+
             if data.shape[0] != 300:
                 raise ValueError(f"Nombre de lignes incorrect. Reçu {data.shape[0]}, attendu 300")
 
             if data.shape[1] not in [43, 47]:
                 raise ValueError(f"Format non supporté. Reçu {data.shape[1]} colonnes (attendu 43 ou 47)")
 
-            # Conversion des types
-            self.X = data.iloc[:, :-1].astype(np.float32).values
-            self.y = data.iloc[:, -1].astype(np.int32).values
+            # On suppose les 5 dernières colonnes sont du one-hot
+            self.X = data.iloc[:, :-5].astype(np.float32).values
+            one_hot_labels = data.iloc[:, -5:].values
+
+            # Transformation one-hot → int
+            self.y = np.argmax(one_hot_labels, axis=1) + 1  # +1 car classe 1 à 5
 
             print(f"Données chargées: {len(self.X)} échantillons")
+
+            import collections
+            print("Check brut des classes :", collections.Counter(self.y))
+
 
         except Exception as e:
             print(f"\nERREUR CRITIQUE dans load_data(): {str(e)}")
@@ -51,7 +58,9 @@ class LangageSignesData:
         for class_id in range(1, 6):
             class_indices = np.where(self.y == class_id)[0]
 
+            print(f"Classe {class_id} → {len(class_indices)} échantillons")
             if len(class_indices) < (train_per_class + val_per_class):
+                print(f"(dans le if)Classe {class_id} → {len(class_indices)} échantillons")
                 raise ValueError(f"Classe {class_id} n'a pas assez d'échantillons")
 
             np.random.shuffle(class_indices)
