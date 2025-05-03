@@ -1,6 +1,7 @@
 import numpy as np
 from perceptron.perceptron_base import PerceptronBase
 
+
 class SimplePerceptron(PerceptronBase):
     
     def __init__(self, data_path, graph_name):

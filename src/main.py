@@ -1,6 +1,6 @@
 from perceptron_mono_couche.Perceptron3Classes import Perceptron3Classes
 from perceptron_mono_couche.Perceptron4Classes import Perceptron4Classes
-from perceptron.simple_perceptron import SimplePerceptron
+from perceptron.simple_perceptron import   SimplePerceptron
 from perceptron.perceptron_descente_gradient import PerceptronDescenteGradient
 from perceptron.perceptron_adaline import PerceptronAdaline
 from perceptron_multi_couche.MLPModulaire import MLPModulaire
@@ -186,7 +186,8 @@ def multicouche():
 def sign_language():
     print("=== Classification Langage des Signes ===")
 
-    data = LangageSignesData()
+
+    data = LangageSignesData(data_path= TABLE_SIGN_LANGUAGE)
     data.summary()
 
 
