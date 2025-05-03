@@ -53,13 +53,30 @@ class NeuralNetworkScratch:
         self.W2 -= self.lr * dW2
         self.b2 -= self.lr * db2
 
-    def train(self, X, y, epochs=100):
+    def train(self, X, y, epochs=100, X_val=None, y_val=None):
+        train_losses = []  # Stocke les losses d'entraînement
+        val_losses = []  # Stocke les losses de validation
+
         for epoch in range(epochs):
+            # Entraînement normal
             y_pred = self.forward(X)
             loss = self.cross_entropy_loss(y_pred, y - 1)
             self.backward(X, y)
+            train_losses.append(loss)
+
+            # Calcul de la validation loss si données fournies
+            if X_val is not None and y_val is not None:
+                val_pred = self.forward(X_val)
+                val_loss = self.cross_entropy_loss(val_pred, y_val - 1)
+                val_losses.append(val_loss)
+
+            # Affichage périodique
             if (epoch + 1) % 10 == 0:
-                print(f"Epoch {epoch + 1}/{epochs}, Loss: {loss:.4f}")
+                val_log = f", Val Loss: {val_losses[-1]:.4f}" if val_losses else ""
+                print(f"Epoch {epoch + 1}/{epochs}, Train Loss: {loss:.4f}{val_log}")
+
+        return train_losses, val_losses  # Retourne les courbes
+
 
     def predict(self, X):
         probs = self.forward(X)
@@ -68,3 +85,13 @@ class NeuralNetworkScratch:
     def accuracy(self, X, y):
         preds = self.predict(X)
         return np.mean(preds == y)
+
+    def plot_losses(self, train_losses, val_losses=None):
+        import matplotlib.pyplot as plt
+        plt.plot(train_losses, label="Train Loss")
+        if val_losses:
+            plt.plot(val_losses, label="Validation Loss")
+        plt.xlabel("Epochs")
+        plt.ylabel("Loss")
+        plt.legend()
+        plt.show()
