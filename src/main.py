@@ -4,10 +4,11 @@ from perceptron.simple_perceptron import SimplePerceptron
 from perceptron.perceptron_descente_gradient import PerceptronDescenteGradient
 from perceptron.perceptron_adaline import PerceptronAdaline
 from perceptron_multi_couche.MLPModulaire import MLPModulaire
+from langage_des_signes.data_loader import LangageSignesData
+from langage_des_signes.neural_network import NeuralNetworkScratch
 
 from data_path import TABLE_AND, TABLE_2_9, TABLE_2_10, TABLE_2_11, TABLE_3_1, TABLE_3_5, TABLE_XOR, TABLE_4_12, \
-    TABLE_4_14, TABLE_4_17
-
+    TABLE_4_14, TABLE_4_17 , TABLE_SIGN_LANGUAGE
 
 def main():
 
@@ -19,7 +20,9 @@ def main():
     
     #monocouche()
 
-    multicouche()
+    #multicouche()
+
+    sign_language()
 
 
 
@@ -179,6 +182,23 @@ def multicouche():
 
         model.train(learning_rate=0.01, epochs=20000)
         model.plot()
+
+def sign_language():
+    print("=== Classification Langage des Signes ===")
+
+    data = LangageSignesData()
+    data.summary()
+
+
+    model = NeuralNetworkScratch(input_size=42, hidden_size=64, output_size=5, lr=0.01)
+
+
+    print("Début de l'entraînement...")
+    model.train(data.X_train, data.y_train, epochs=200)
+
+
+    acc = model.accuracy(data.X_val, data.y_val)
+    print(f"Accuracy sur validation : {acc * 100:.2f}%")
 
 
 if __name__ == "__main__":
