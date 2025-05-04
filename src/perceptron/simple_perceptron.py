@@ -31,4 +31,4 @@ class SimplePerceptron(PerceptronBase):
 
 
     def display_graph_regression(self):
-        super().display_graph_regression
+        super().display_graph_regression()

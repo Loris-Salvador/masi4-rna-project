@@ -12,17 +12,17 @@ from data_path import TABLE_AND, TABLE_2_9, TABLE_2_10, TABLE_2_11, TABLE_3_1, T
 
 def main():
 
-    #simple_perceptron()
+    simple_perceptron()
 
-    #descente_gradient()
+    descente_gradient()
 
-    #adaline()
+    adaline()
     
     #monocouche()
 
     #multicouche()
 
-    sign_language()
+    #sign_language()
 
 
 

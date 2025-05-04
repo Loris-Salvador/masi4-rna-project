@@ -10,13 +10,13 @@ class PerceptronBase:
 
         data = pd.read_csv(data_path, header=None)
 
-        #toutes les lignes et toutes les colonnes sauf derniere
+        #toutes les lignes et toutes les colonnes sauf dernière
         self.entries = data.iloc[:, :-1].values
 
-        #toutes les lignes et uniquement la derniere colonne
+        #toutes les lignes et uniquement la dernière colonne
         self.exp_outputs = data.iloc[:, -1].values 
 
-        # Ajouter une colonne de 1 pour le biais à self.entries
+        # Ajouter une colonne de 1 pour le biais
         # shape[0] = ligne et shape[1] = colonne
         self.entries = np.c_[np.ones((self.entries.shape[0], 1)), self.entries]
 
