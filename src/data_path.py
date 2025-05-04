@@ -12,3 +12,7 @@ TABLE_XOR = os.path.join(PROJECT_ROOT, "data", "table_XOR.csv")
 TABLE_4_12 = os.path.join(PROJECT_ROOT, "data", "table_4_12.csv")
 TABLE_4_14 = os.path.join(PROJECT_ROOT, "data", "table_4_14.csv")
 TABLE_4_17 = os.path.join(PROJECT_ROOT, "data", "table_4_17.csv")
+
+TABLE_SIGN_LANGUAGE = os.path.join(PROJECT_ROOT, "data", "LangageDesSignes", "data_formatted.csv")
+
+
