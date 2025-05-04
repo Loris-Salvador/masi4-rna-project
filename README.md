@@ -100,4 +100,4 @@ Une fois le travail fini sur une branche (pas trop faire par branche) faire une 
 
 ## DataSet réel
 
-- Langue des signes ⏳
+- Langue des signes ✅ ***Josué***
