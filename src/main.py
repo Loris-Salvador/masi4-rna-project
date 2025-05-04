@@ -199,11 +199,11 @@ def sign_language():
         data.X_train, data.y_train,
         epochs=500,
         X_val=data.X_val,
-        y_val=data.y_val
+        y_val=data.y_val    
     )
 
-    # Affiche le graphique
     model.plot_losses(train_loss, val_loss)
+
 
 
     acc = model.accuracy(data.X_val, data.y_val)
