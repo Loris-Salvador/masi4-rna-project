@@ -1,17 +1,30 @@
 from perceptron.perceptron_base import PerceptronBase
+import numpy as np
 
 
 class PerceptronAdaline(PerceptronBase):
 
-    def __init__(self, data_path, graph_name="ADALINE"):
+    def __init__(self, data_path, graph_name):
         super().__init__(data_path=data_path, graph_name=graph_name)
 
-    def train(self, learning_rate, epochs):
+    def train(self, learning_rate, epochs, tolerance=1e-3):
         for epoch in range(epochs):
-            for x_i, d_i in zip(self.entries, self.exp_outputs):
-                z = x_i.dot(self.weights)
-                error = d_i - z
+            total_error = 0.0
+
+            for i in range(len(self.entries)):
+                x_i = self.entries[i]
+                y_true = self.exp_outputs[i]
+
+                y_pred = np.dot(self.weights, x_i)
+                error = y_true - y_pred
+                total_error += error**2
+
                 self.weights += learning_rate * error * x_i
+
+            E_moy = total_error / len(self.entries)
+
+            if E_moy < tolerance:
+                break
 
     def display_graph_classification(self):
         super().display_graph_classification()

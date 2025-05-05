@@ -10,6 +10,7 @@ from langage_des_signes.neural_network import NeuralNetworkScratch
 from data_path import TABLE_AND, TABLE_2_9, TABLE_2_10, TABLE_2_11, TABLE_3_1, TABLE_3_5, TABLE_XOR, TABLE_4_12, \
     TABLE_4_14, TABLE_4_17 , TABLE_SIGN_LANGUAGE
 
+
 def main():
 
     simple_perceptron()
