@@ -31,6 +31,9 @@ class PerceptronDescenteGradient(PerceptronBase):
                 print(f"Apprentissage terminé à l'époque {epoch} : l'erreur moyenne est inférieur au seuil fixé")
                 break
 
+        print(f"Apprentissage terminé : le nombre d'epoch maximum a été atteint ({epochs})")
+
+
     def display_graph_classification(self):
         super().display_graph_classification()
 

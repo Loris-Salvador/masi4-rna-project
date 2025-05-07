@@ -27,6 +27,8 @@ class PerceptronAdaline(PerceptronBase):
             if E_moy < tolerance:
                 break
 
+        print(f"Apprentissage terminé : le nombre d'epoch maximum a été atteint ({epochs})")
+
     def display_graph_classification(self):
         super().display_graph_classification()
 

@@ -35,6 +35,7 @@ class SimplePerceptron(PerceptronBase):
                 print(f"Apprentissage terminé à l'époque {epoch} : le nombre d'erreur est arrivé à 0")
                 break
 
+        print(f"Apprentissage terminé : le nombre d'epoch maximum a été atteint ({epochs})")
 
     def display_graph_classification(self):
         super().display_graph_classification()
