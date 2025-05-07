@@ -16,20 +16,23 @@ class SimplePerceptron(PerceptronBase):
             nb_error = 0
 
             for i in range(len(self.entries)):
-                x_i = self.entries[i]
-                y_true = self.exp_outputs[i]
+                entry = self.entries[i]
+                expected_output = self.expected_outputs[i]
 
-                z = np.dot(x_i, self.weights)
-                y_pred = activation(z)
+                scalaire_product = np.dot(entry, self.weights)
+                prediction = activation(scalaire_product)
 
-                error = y_true - y_pred
+                error = expected_output - prediction
 
                 if error != 0:
                     nb_error += 1
-
-                self.weights += learning_rate * error * x_i
+                    
+                    
+                for j in range (len(self.weights)):
+                    self.weights[j] = self.weights[j] + learning_rate * error * entry[j]
 
             if nb_error == 0:
+                print(f"Apprentissage terminé à l'époque {epoch} : le nombre d'erreur est arrivé à 0")
                 break
 
 

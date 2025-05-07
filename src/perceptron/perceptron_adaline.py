@@ -12,14 +12,15 @@ class PerceptronAdaline(PerceptronBase):
             total_error = 0.0
 
             for i in range(len(self.entries)):
-                x_i = self.entries[i]
-                y_true = self.exp_outputs[i]
+                entry = self.entries[i]
+                expected_output = self.expected_outputs[i]
 
-                y_pred = np.dot(self.weights, x_i)
-                error = y_true - y_pred
-                total_error += error**2
+                prediction = np.dot(self.weights, entry)
+                error = expected_output - prediction
+                total_error += error ** 2
 
-                self.weights += learning_rate * error * x_i
+                for j in range (len(self.weights)):
+                    self.weights[j] = self.weights[j] + learning_rate * error * entry[j]
 
             E_moy = total_error / len(self.entries)
 

@@ -14,7 +14,7 @@ class PerceptronBase:
         self.entries = data.iloc[:, :-1].values
 
         #toutes les lignes et uniquement la dernière colonne
-        self.exp_outputs = data.iloc[:, -1].values 
+        self.expected_outputs = data.iloc[:, -1].values 
 
         # Ajouter une colonne de 1 pour le biais
         # shape[0] = ligne et shape[1] = colonne
@@ -25,7 +25,7 @@ class PerceptronBase:
 
     def display_graph_classification(self):
         X = self.entries[:, 1:]
-        y = self.exp_outputs
+        y = self.expected_outputs
 
         plt.scatter(X[y == 1, 0], X[y == 1, 1], color='red', label='Classe 1')
         plt.scatter(X[y == -1, 0], X[y == -1, 1], color='blue', label='Classe -1')
@@ -46,7 +46,7 @@ class PerceptronBase:
 
     def display_graph_regression(self):
         X = self.entries[:, 1:]
-        y = self.exp_outputs
+        y = self.expected_outputs
 
         if X.shape[1] != 1:
             print("Impossible d'afficher une régression en 2D avec plus d'une variable explicative.")
