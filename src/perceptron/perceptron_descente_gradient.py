@@ -8,6 +8,7 @@ class PerceptronDescenteGradient(PerceptronBase):
         super().__init__(data_path=data_path, graph_name=graph_name)
 
     def train(self, learning_rate, epochs, threshold=1e-3):
+        average_error = 0.0
         for epoch in range(epochs):
             total_error = 0.0
             delta_w_i = np.zeros_like(self.weights)
@@ -28,11 +29,11 @@ class PerceptronDescenteGradient(PerceptronBase):
             average_error = total_error / len(self.entries)
 
             if average_error < threshold:
-                print(f"Apprentissage terminé à l'époque {epoch} : l'erreur moyenne est inférieur au seuil fixé")
+                print(f"Apprentissage terminé à l'époque {epoch} : le nombre d'erreurs a atteint 0")
                 break
 
-        print(f"Apprentissage terminé : le nombre d'epoch maximum a été atteint ({epochs})")
-
+        if average_error >= threshold:
+            print(f"Apprentissage terminé : le nombre d'epoch maximum a été atteint ({epochs})")
 
     def display_graph_classification(self):
         super().display_graph_classification()

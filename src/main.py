@@ -1,11 +1,12 @@
 from perceptron_mono_couche.Perceptron3Classes import Perceptron3Classes
 from perceptron_mono_couche.Perceptron4Classes import Perceptron4Classes
-from perceptron.perceptron_simple import   SimplePerceptron
+from perceptron.perceptron_simple import   PerceptronSimple
 from perceptron.perceptron_descente_gradient import PerceptronDescenteGradient
 from perceptron.perceptron_adaline import PerceptronAdaline
 from perceptron_multi_couche.MLPModulaire import MLPModulaire
 from langage_des_signes.data_loader import LangageSignesData
 from langage_des_signes.neural_network import NeuralNetworkScratch
+import os
 
 from data_path import TABLE_AND, TABLE_2_9, TABLE_2_10, TABLE_2_11, TABLE_3_1, TABLE_3_5, TABLE_XOR, TABLE_4_12, \
     TABLE_4_14, TABLE_4_17 , TABLE_SIGN_LANGUAGE
@@ -13,11 +14,7 @@ from data_path import TABLE_AND, TABLE_2_9, TABLE_2_10, TABLE_2_11, TABLE_3_1, T
 
 def main():
 
-    simple_perceptron()
-
-    descente_gradient()
-
-    adaline()
+    perceptron()
     
     #monocouche()
 
@@ -27,84 +24,114 @@ def main():
 
 
 
+def perceptron():
+    os.system("cls")
+    while True:
 
-def simple_perceptron():
-    model_and = SimplePerceptron(data_path=TABLE_AND, graph_name="Perceptron Simple Classification AND")
+        print("0. Quitter")
+        print("1. Perceptron Simple")
+        print("2. Perceptron Descente Gradient")
+        print("3. Perceptron Adaline")
+        perceptron_choice = input("Choisissez le type de perceptron : ")
 
-    model_and.train(learning_rate=0.1, epochs=500)
+        if perceptron_choice == "0":
+            break
 
-    model_and.display_graph_classification()
+        data_path = perceptron_table_choice()
+        graph_name = ""
 
-    model_2_9 = SimplePerceptron(data_path=TABLE_2_9, graph_name="Perceptron Simple Classification linéairment séparable")
+        if perceptron_choice == "1":
+            if data_path == TABLE_AND:
+                graph_name = "Perceptron Simple Table AND"
+            elif data_path == TABLE_2_9:
+                graph_name = "Perceptron Simple données linéairement séparable"
+            elif data_path == TABLE_2_10:
+                graph_name = "Perceptron Simple données non linéairement séparable"
+            elif data_path == TABLE_2_11:
+                graph_name = "Perceptron Simple Regression linéaire"
 
-    model_2_9.train(0.1, 500)
+            print("")
+            epochs = input("Entrez le nombre d'epochs : ")
+            learning_rate = input("Entrez le learning rate : ")
 
-    model_2_9.display_graph_classification()
+            model = PerceptronSimple(data_path=data_path, graph_name=graph_name)
 
-    model_2_10 = SimplePerceptron(data_path=TABLE_2_10, graph_name="Perceptron Simple Classification non linéairment séparable")
+            model.train(epochs=int(epochs), learning_rate=float(learning_rate))
 
-    model_2_10.train(0.1, 500)
-
-    model_2_10.display_graph_classification()
-
-    model_2_11 = SimplePerceptron(data_path=TABLE_2_11, graph_name="Perceptron Simple Regression")
-
-    model_2_11.train(0.1, 500)
-
-    model_2_11.display_graph_regression()
-
-
-def descente_gradient():
-    model_and = PerceptronDescenteGradient(data_path=TABLE_AND, graph_name="Perceptron Gradient Classification AND")
-
-    model_and.train(learning_rate=0.1, epochs=500)
-
-    model_and.display_graph_classification()
-
-    model_2_9 = PerceptronDescenteGradient(data_path=TABLE_2_9, graph_name="Perceptron Gradient Classification linéairment séparable")
-
-    model_2_9.train(0.001, 500)
-
-    model_2_9.display_graph_classification()
-
-    model_2_10 = PerceptronDescenteGradient(data_path=TABLE_2_10, graph_name="Perceptron Gradient Classification non linéairment séparable")
-
-    model_2_10.train(0.001, 500)
-
-    model_2_10.display_graph_classification()
-
-    model_2_11 = PerceptronDescenteGradient(data_path=TABLE_2_11, graph_name="Perceptron Gradient Regression")
-
-    model_2_11.train(learning_rate=1e-5, epochs=2000)
-
-    model_2_11.display_graph_regression()
+            if data_path == TABLE_2_11:
+                 model.display_graph_regression()
+            else:
+                model.display_graph_classification()
 
 
-def adaline():
-    model_and = PerceptronAdaline(data_path=TABLE_AND, graph_name="Perceptron ADALINE Classification AND")
+        elif perceptron_choice == "2":
+            if data_path == TABLE_AND:
+                graph_name = "Perceptron Descente Gradient Table AND"
+            elif data_path == TABLE_2_9:
+                graph_name = "Perceptron Descente Gradient données linéairement séparable"
+            elif data_path == TABLE_2_10:
+                graph_name = "Perceptron Descente Gradient données non linéairement séparable"
+            elif data_path == TABLE_2_11:
+                graph_name = "Perceptron Descente Gradient Regression linéaire"
 
-    model_and.train(learning_rate=0.1, epochs=500)
+            print("")
+            epochs = input("Entrez le nombre d'epochs : ")
+            learning_rate = input("Entrez le learning rate : ")
+            threshold = input("Entrez le threshold : ")
 
-    model_and.display_graph_classification()
+            model = PerceptronDescenteGradient(data_path=data_path, graph_name=graph_name)
 
-    model_2_9 = PerceptronAdaline(data_path=TABLE_2_9, graph_name="Perceptron ADALINE Classification linéairment séparable")
+            model.train(epochs=int(epochs), learning_rate=float(learning_rate), threshold=float(threshold))
 
-    model_2_9.train(0.001, 500)
+            if data_path == TABLE_2_11:
+                model.display_graph_regression()
+            else:
+                model.display_graph_classification()
 
-    model_2_9.display_graph_classification()
+        elif perceptron_choice == "3":
+            if data_path == TABLE_AND:
+                graph_name = "Perceptron ADALINE Table AND"
+            elif data_path == TABLE_2_9:
+                graph_name = "Perceptron ADALINE données linéairement séparable"
+            elif data_path == TABLE_2_10:
+                graph_name = "Perceptron ADALINE données non linéairement séparable"
+            elif data_path == TABLE_2_11:
+                graph_name = "Perceptron ADALINE Regression linéaire"
 
-    model_2_10 = PerceptronAdaline(data_path=TABLE_2_10, graph_name="Perceptron ADALINE Classification non linéairment séparable")
+            print("")
+            epochs = input("Entrez le nombre d'epochs : ")
+            learning_rate = input("Entrez le learning rate : ")
+            threshold = input("Entrez le threshold : ")
 
-    model_2_10.train(0.001, 500)
+            model = PerceptronAdaline(data_path=data_path, graph_name=graph_name)
 
-    model_2_10.display_graph_classification()
+            model.train(epochs=int(epochs), learning_rate=float(learning_rate), threshold=float(threshold))
 
-    model_2_11 = PerceptronAdaline(data_path=TABLE_2_11, graph_name="Perceptron ADALINE Regression")
+            if data_path == TABLE_2_11:
+                model.display_graph_regression()
+            else:
+                model.display_graph_classification()
 
-    model_2_11.train(learning_rate=1e-5, epochs=2000)
+        os.system("cls")
 
-    model_2_11.display_graph_regression()
 
+def perceptron_table_choice():
+    print("")
+    print("1. Porte AND")
+    print("2. Données linéairement séparable")
+    print("3. Données non linéairement séparable")
+    print("4. Regression linéaire")
+    choice = input("Choisissez le type de donées : ")
+
+    if choice == "1":
+        return TABLE_AND
+    elif choice == "2":
+        return TABLE_2_9
+    elif choice == "3":
+        return TABLE_2_10
+    elif choice == "4":
+        return TABLE_2_11
+    return None
 
 
 def monocouche():
