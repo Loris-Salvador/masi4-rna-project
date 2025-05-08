@@ -4,8 +4,8 @@ import numpy as np
 
 class PerceptronDescenteGradient(PerceptronBase):
 
-    def __init__(self, data_path, graph_name):
-        super().__init__(data_path=data_path, graph_name=graph_name)
+    def __init__(self, data_path, graph_name, ecart_type):
+        super().__init__(data_path=data_path, graph_name=graph_name, ecart_type=ecart_type)
 
     def train(self, learning_rate, epochs, threshold=1e-3):
         average_error = 0.0

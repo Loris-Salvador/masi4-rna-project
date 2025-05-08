@@ -58,10 +58,12 @@ def perceptron(perceptron_choice):
             graph_name = "Perceptron Simple Regression linéaire"
 
         print("")
+        ecart_type = input("Ecart type pour la génération des poids synaptiques : ")
         epochs = input("Entrez le nombre d'epochs : ")
         learning_rate = input("Entrez le learning rate : ")
+        
 
-        model = PerceptronSimple(data_path=data_path, graph_name=graph_name)
+        model = PerceptronSimple(data_path=data_path, graph_name=graph_name, ecart_type=float(ecart_type))
 
         model.train(epochs=int(epochs), learning_rate=float(learning_rate))
 
@@ -82,11 +84,12 @@ def perceptron(perceptron_choice):
             graph_name = "Perceptron Descente Gradient Regression linéaire"
 
         print("")
+        ecart_type = input("Ecart type pour la génération des poids synaptiques : ")
         epochs = input("Entrez le nombre d'epochs : ")
         learning_rate = input("Entrez le learning rate : ")
         threshold = input("Entrez le threshold : ")
 
-        model = PerceptronDescenteGradient(data_path=data_path, graph_name=graph_name)
+        model = PerceptronDescenteGradient(data_path=data_path, graph_name=graph_name, ecart_type=float(ecart_type))
 
         model.train(epochs=int(epochs), learning_rate=float(learning_rate), threshold=float(threshold))
 
@@ -106,11 +109,12 @@ def perceptron(perceptron_choice):
             graph_name = "Perceptron ADALINE Regression linéaire"
 
         print("")
+        ecart_type = input("Ecart type pour la génération des poids synaptiques : ")
         epochs = input("Entrez le nombre d'epochs : ")
         learning_rate = input("Entrez le learning rate : ")
         threshold = input("Entrez le threshold : ")
 
-        model = PerceptronAdaline(data_path=data_path, graph_name=graph_name)
+        model = PerceptronAdaline(data_path=data_path, graph_name=graph_name, ecart_type=float(ecart_type))
 
         model.train(epochs=int(epochs), learning_rate=float(learning_rate), threshold=float(threshold))
 

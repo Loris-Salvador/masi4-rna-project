@@ -5,7 +5,7 @@ import pandas as pd
 
 class PerceptronBase:
     
-    def __init__(self, data_path, graph_name):
+    def __init__(self, data_path, graph_name, ecart_type):
         self.graph_name = graph_name
 
         data = pd.read_csv(data_path, header=None)
@@ -20,7 +20,7 @@ class PerceptronBase:
         # shape[0] = ligne et shape[1] = colonne
         self.entries = np.c_[np.ones((self.entries.shape[0], 1)), self.entries]
 
-        self.weights = np.random.randn(self.entries.shape[1])
+        self.weights = np.random.normal(0, ecart_type, self.entries.shape[1])   
 
 
     def display_graph_classification(self):
