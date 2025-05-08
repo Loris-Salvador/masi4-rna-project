@@ -19,7 +19,7 @@ class PerceptronDescenteGradient(PerceptronBase):
 
                 prediction = np.dot(self.weights, entry)
                 error = expected_output - prediction
-                total_error += error ** 2
+                total_error += 0.5 * (error ** 2)
 
                 for j in range (len(delta_w_i)):
                     delta_w_i[j] = delta_w_i[j] + learning_rate * error * entry[j]

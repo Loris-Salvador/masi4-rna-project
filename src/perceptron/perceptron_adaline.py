@@ -18,7 +18,7 @@ class PerceptronAdaline(PerceptronBase):
 
                 prediction = np.dot(self.weights, entry)
                 error = expected_output - prediction
-                total_error += error ** 2
+                total_error += 0.5 * (error ** 2)
 
                 for j in range (len(self.weights)):
                     self.weights[j] = self.weights[j] + learning_rate * error * entry[j]
