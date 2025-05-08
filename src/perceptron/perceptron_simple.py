@@ -12,6 +12,7 @@ class PerceptronSimple(PerceptronBase):
         super().__init__(data_path=data_path, graph_name=graph_name)
 
     def train(self, learning_rate, epochs):
+        nb_error = 0
         for epoch in range(epochs):
             nb_error = 0
 
@@ -35,7 +36,8 @@ class PerceptronSimple(PerceptronBase):
                 print(f"Apprentissage terminé à l'époque {epoch} : le nombre d'erreurs a atteint 0")
                 break
 
-        print(f"Apprentissage terminé : le nombre d'epoch maximum a été atteint ({epochs})")
+        if nb_error != 0:
+            print(f"Apprentissage terminé : le nombre d'epoch maximum a été atteint ({epochs})")
 
     def display_graph_classification(self):
         super().display_graph_classification()
