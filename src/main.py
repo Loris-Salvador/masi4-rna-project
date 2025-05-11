@@ -13,10 +13,9 @@ from data_path import TABLE_AND, TABLE_2_9, TABLE_2_10, TABLE_2_11, TABLE_3_1, T
 
 
 def main():
-    os.system("cls")
     while True:
 
-        print("0. Quitter")
+        print("\n\n0. Quitter")
         print("1. Perceptron Simple")
         print("2. Perceptron Descente Gradient")
         print("3. Perceptron Adaline")
