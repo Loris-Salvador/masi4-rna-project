@@ -1,4 +1,6 @@
 import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.decomposition import PCA
 
 class NeuralNetworkScratch:
     def __init__(self, input_size=42, hidden_size=64, output_size=5, lr=0.01):
@@ -9,6 +11,7 @@ class NeuralNetworkScratch:
         self.b1 = np.zeros((1, hidden_size))
         self.W2 = np.random.randn(hidden_size, output_size) * 0.01
         self.b2 = np.zeros((1, output_size))
+        print("Poids initiaux (W1[0][:5]) =", self.W1[0][:5])
 
     def relu(self, x):
         return np.maximum(0, x)
@@ -53,12 +56,11 @@ class NeuralNetworkScratch:
         self.W2 -= self.lr * dW2
         self.b2 -= self.lr * db2
 
-    def train(self, X, y, epochs=100, X_val=None, y_val=None):
+    def train(self, X, y, epochs=100, X_val=None, y_val=None, tol=None):
         train_losses = []  # Stocke les losses d'entraînement
         val_losses = []  # Stocke les losses de validation
 
         for epoch in range(epochs):
-            # Entraînement normal
             y_pred = self.forward(X)
             loss = self.cross_entropy_loss(y_pred, y - 1)
             self.backward(X, y)
@@ -74,6 +76,11 @@ class NeuralNetworkScratch:
             if (epoch + 1) % 10 == 0:
                 val_log = f", Val Loss: {val_losses[-1]:.4f}" if val_losses else ""
                 print(f"Epoch {epoch + 1}/{epochs}, Train Loss: {loss:.4f}{val_log}")
+
+            # Condition d'arrêt
+            if tol is not None and loss < tol:
+                print(f"Stop early at epoch {epoch} as train loss {loss:.4f} < tol {tol}")
+                break
 
         return train_losses, val_losses  # Retourne les courbes
 
@@ -94,4 +101,20 @@ class NeuralNetworkScratch:
         plt.xlabel("Epochs")
         plt.ylabel("Loss")
         plt.legend()
+        plt.show()
+
+
+
+    def plot_classification_2D(self, X, y_true, y_pred, title=""):
+        # Réduction de dimension pour la visualisation
+        pca = PCA(n_components=2)
+        X_reduced = pca.fit_transform(X)
+
+        plt.figure(figsize=(8, 6))
+        scatter = plt.scatter(X_reduced[:, 0], X_reduced[:, 1], c=y_pred, cmap='tab10', edgecolors='k', alpha=0.7)
+        plt.title(title)
+        plt.xlabel("x")
+        plt.ylabel("y")
+        plt.colorbar(scatter, ticks=range(5), label="Classe prédite")
+        plt.grid(True)
         plt.show()
