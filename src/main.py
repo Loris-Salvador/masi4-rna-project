@@ -178,14 +178,14 @@ def multicouche():
             output_activation="sigmoid"
         )
 
-        model.train(learning_rate=0.1, epochs=15000)
+        model.train(learning_rate=0.8, epochs=2000)
         model.plot()
 
     if table_choice == "2":
         model = MLPModulaire(
             data_path=TABLE_4_12,
             input_size=2,
-            hidden_size=4,  # Tu peux augmenter la complexité pour mieux apprendre
+            hidden_size=4,
             output_size=1,
             task="classification",
             output_activation="sigmoid"
@@ -198,10 +198,10 @@ def multicouche():
         model = MLPModulaire(
             data_path=TABLE_4_14,
             input_size=2,
-            hidden_size=6,  # Plus de neurones cachés pour mieux séparer 3 classes
+            hidden_size=6,
             output_size=3,
             task="classification",
-            output_activation="softmax"
+            output_activation="softmax",
         )
 
         model.train(learning_rate=0.1, epochs=15000)
@@ -211,13 +211,13 @@ def multicouche():
         model = MLPModulaire(
             data_path=TABLE_4_17,
             input_size=1,
-            hidden_size=5,  # Suffisant pour capter non-linéarité
+            hidden_size=5,
             output_size=1,
             task="regression",
             output_activation="linear"
         )
 
-        model.train(learning_rate=0.01, epochs=20000)
+        model.train(learning_rate=0.004, epochs=3000)
         model.plot()
 
 def sign_language():
