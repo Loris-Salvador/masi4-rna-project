@@ -22,6 +22,12 @@ def linear(x):
 def linear_derivative(x):
     return np.ones_like(x)
 
+def tanh(x):
+    return np.tanh(x)
+
+def tanh_derivative(x):
+    return 1 - np.tanh(x) ** 2
+
 class MLPModulaire:
     def __init__(self, data_path, input_size, hidden_size, output_size, task='classification', output_activation='sigmoid'):
         self.task = task
@@ -66,7 +72,10 @@ class MLPModulaire:
 
     def forward(self, X):
         self.z1 = np.dot(X, self.W1) + self.b1
-        self.a1 = sigmoid(self.z1)  # couche cachée
+        if self.output_activation_name == 'linear':
+            self.a1 = np.tanh(self.z1)
+        else:
+            self.a1 = sigmoid(self.z1)
         self.z2 = np.dot(self.a1, self.W2) + self.b2
         self.a2 = self.output_activation(self.z2)
         return self.a2
@@ -83,17 +92,49 @@ class MLPModulaire:
         output_delta = output_error * self.output_derivative(output)
 
         hidden_error = np.dot(output_delta, self.W2.T)
-        hidden_delta = hidden_error * sigmoid_derivative(self.a1)
+        if self.output_activation_name == 'linear':
+            hidden_delta = hidden_error * tanh_derivative(self.a1)  # dérivée tanh
+        else:
+            hidden_delta = hidden_error * sigmoid_derivative(self.a1)
 
         self.W2 += learning_rate * np.dot(self.a1.T, output_delta)
         self.b2 += learning_rate * np.sum(output_delta, axis=0, keepdims=True)
         self.W1 += learning_rate * np.dot(X.T, hidden_delta)
         self.b1 += learning_rate * np.sum(hidden_delta, axis=0, keepdims=True)
 
-    def train(self, learning_rate, epochs):
+    def train(self, learning_rate, epochs, verbose=True, plot_loss=True):
+        losses = []
+
         for epoch in range(epochs):
             output = self.forward(self.X)
+            loss = self.loss(self.y, output)
+            losses.append(loss)
+
             self.backward(self.X, self.y, output, learning_rate)
+
+            # Affichage console
+            if verbose and (epoch % 100 == 0 or epoch == epochs - 1):
+                print(f"Époque {epoch + 1}/{epochs} - Erreur moyenne (loss) : {loss:.6f}")
+
+        if plot_loss:
+            plt.plot(range(1, epochs + 1), losses, color='purple')
+            plt.title("Évolution de la fonction de perte")
+            plt.xlabel("Époque")
+            plt.ylabel("Erreur / perte")
+            plt.grid(True)
+            plt.show()
+
+        print("Apprentissage terminé.")
+
+        print("\nSorties finales après apprentissage :")
+        outputs = self.forward(self.X)
+        for i, (x, y_pred, y_true) in enumerate(zip(self.X, outputs, self.y)):
+            print(f"Entrée {i + 1}: {x} → Prédiction: {y_pred[0]:.4f} (Attendu: {y_true[0]})")
+        print(f"Poids finaux W1 :\n{self.W1}")
+        print(f"Poids finaux W2 :\n{self.W2}")
+
+
+
 
     def predict(self, x):
         output = self.forward(np.array([x]))
