@@ -1,7 +1,8 @@
 import os
+import time
+
 import pandas as pd
 import numpy as np
-import random
 
 
 class LangageSignesData:
@@ -50,7 +51,7 @@ class LangageSignesData:
 
     def prepare_datasets(self, train_per_class=50, val_per_class=10):
         """Prépare les datasets avec stratification"""
-        np.random.seed(42)
+        np.random.seed(int(time.time()))
 
         X_train, y_train = [], []
         X_val, y_val = [], []

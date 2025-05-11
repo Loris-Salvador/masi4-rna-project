@@ -230,12 +230,16 @@ def sign_language():
     print("Début de l'entraînement...")
     train_loss, val_loss = model.train(
         data.X_train, data.y_train,
-        epochs=500,
+        epochs=750,
         X_val=data.X_val,
-        y_val=data.y_val    
+        y_val=data.y_val,
+        tol=0.1
     )
 
+    y_pred = model.predict(data.X_train)
     model.plot_losses(train_loss, val_loss)
+    model.plot_classification_2D(data.X_train, data.y_train, y_pred, title="Visualisation 2D des prédictions")
+
 
 
 
