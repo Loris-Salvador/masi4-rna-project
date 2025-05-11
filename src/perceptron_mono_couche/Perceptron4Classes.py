@@ -52,7 +52,7 @@ class Perceptron4Classes:
         print("Évaluation des prédictions :\n")
         correct = 0
         for i in range(len(self.X)):
-            x_i = self.X[i][1:]  # On enlève le biais pour la prédiction
+            x_i = self.X[i][1:] 
             true_class = np.argmax(self.y[i])
             predicted_class = self.predict(x_i)
             status = "✔️ Correct" if predicted_class == true_class else "❌ Faux"

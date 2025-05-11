@@ -31,7 +31,7 @@ class Perceptron3Classes:
                 y_true = self.y[i]
 
                 # Parcours des classes
-                for class_idx in range(3):  # On sait que c'est exactement 3 classes
+                for class_idx in range(3):
                     z = np.dot(self.weights[class_idx], x_i)
                     y_pred = self.activation(z)
 

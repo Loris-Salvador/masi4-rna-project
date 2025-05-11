@@ -28,7 +28,6 @@ class LangageSignesData:
             if data.shape[1] not in [43, 47]:
                 raise ValueError(f"Format non supporté. Reçu {data.shape[1]} colonnes (attendu 43 ou 47)")
 
-            # On suppose les 5 dernières colonnes sont du one-hot
             self.X = data.iloc[:, :-5].astype(np.float32).values
             one_hot_labels = data.iloc[:, -5:].values
 
