@@ -224,16 +224,16 @@ def sign_language():
     data.summary()
 
 
-    model = NeuralNetworkScratch(input_size=42, hidden_size=128, output_size=5, lr=0.05)
+    model = NeuralNetworkScratch(input_size=42, hidden_size=150, output_size=5, lr=0.15)
 
 
     print("Début de l'entraînement...")
     train_loss, val_loss = model.train(
         data.X_train, data.y_train,
-        epochs=750,
+        epochs=5000,
         X_val=data.X_val,
         y_val=data.y_val,
-        tol=0.1
+        tol=0.0001
     )
 
     y_pred = model.predict(data.X_train)

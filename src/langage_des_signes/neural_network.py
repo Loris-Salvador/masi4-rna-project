@@ -82,8 +82,6 @@ class NeuralNetworkScratch:
                 print(f"Stop early at epoch {epoch} as train loss {loss:.4f} < tol {tol}")
                 break
 
-
-
         return train_losses, val_losses  # Retourne les courbes
 
 
