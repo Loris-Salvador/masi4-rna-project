@@ -39,8 +39,6 @@ def main():
         elif perceptron_choice == "6":
             sign_language()
 
-        os.system("cls")
-
 
 def perceptron(perceptron_choice):
     data_path = perceptron_table_choice()
