@@ -104,17 +104,27 @@ class NeuralNetworkScratch:
         plt.show()
 
 
-
-    def plot_classification_2D(self, X, y_true, y_pred, title=""):
-        # Réduction de dimension pour la visualisation
+    def plot_classification_2D(self, X, y_true, y_pred, X_val, y_val, title="Décision Boundary"):
         pca = PCA(n_components=2)
         X_reduced = pca.fit_transform(X)
+        X_val_reduced = pca.transform(X_val)
+
+        x_min, x_max = X_reduced[:, 0].min() - 1, X_reduced[:, 0].max() + 1
+        y_min, y_max = X_reduced[:, 1].min() - 1, X_reduced[:, 1].max() + 1
+        xx, yy = np.meshgrid(np.arange(x_min, x_max, 0.02), np.arange(y_min, y_max, 0.02))
+
+        grid_points = np.c_[xx.ravel(), yy.ravel()]
+        grid_pred = self.predict(pca.inverse_transform(grid_points))
+        grid_pred = grid_pred.reshape(xx.shape)
 
         plt.figure(figsize=(8, 6))
-        scatter = plt.scatter(X_reduced[:, 0], X_reduced[:, 1], c=y_pred, cmap='tab10', edgecolors='k', alpha=0.7)
+        plt.contourf(xx, yy, grid_pred, alpha=0.3, cmap='tab10')
+        plt.scatter(X_reduced[:, 0], X_reduced[:, 1], c=y_pred, cmap='tab10', edgecolors='k', alpha=0.7, label='Train')
+        plt.scatter(X_val_reduced[:, 0], X_val_reduced[:, 1], c=y_val, cmap='tab10', marker='*', edgecolors='k', alpha=1.0, label='Validation')
         plt.title(title)
         plt.xlabel("x")
         plt.ylabel("y")
-        plt.colorbar(scatter, ticks=range(5), label="Classe prédite")
+        plt.colorbar(ticks=range(5), label="Classe prédite")
+        plt.legend()
         plt.grid(True)
         plt.show()

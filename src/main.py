@@ -182,7 +182,7 @@ def multicouche():
         model = MLPModulaire(
             data_path=TABLE_4_12,
             input_size=2,
-            hidden_size=4,
+            hidden_size=5,
             output_size=1,
             task="classification",
             output_activation="sigmoid"
@@ -231,16 +231,19 @@ def sign_language():
     print("Début de l'entraînement...")
     train_loss, val_loss = model.train(
         data.X_train, data.y_train,
-        epochs=5000,
+        epochs=250,
         X_val=data.X_val,
         y_val=data.y_val,
-        tol=0.0001
+        tol=0.1
     )
 
     y_pred = model.predict(data.X_train)
     model.plot_losses(train_loss, val_loss)
-    model.plot_classification_2D(data.X_train, data.y_train, y_pred, title="Visualisation 2D des prédictions")
-
+    model.plot_classification_2D(
+        data.X_train, data.y_train, y_pred, 
+        data.X_val, data.y_val, 
+        title="Visualisation 2D des prédictions avec séparation des données d'entraînement et de validation"
+    )
 
 
 
